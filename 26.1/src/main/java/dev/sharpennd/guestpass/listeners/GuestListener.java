@@ -12,9 +12,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.*;
+import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.event.vehicle.VehicleEnterEvent;
 
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 
 public class GuestListener implements Listener {
 
@@ -31,7 +31,7 @@ public class GuestListener implements Listener {
     private void notify(Player player) {
         String raw = plugin.getConfig().getString("messages.restricted", "&cYou cannot do that as a guest.");
         if (raw == null || raw.isBlank()) return;
-        player.sendMessage(LegacyComponentSerializer.legacyAmpersand().deserialize(raw));
+        player.sendMessage(org.bukkit.ChatColor.translateAlternateColorCodes('&', raw));
     }
 
     // --- Block break ---
@@ -121,12 +121,12 @@ public class GuestListener implements Listener {
         }
     }
 
-    // --- XP pickup ---
-    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void onXpPickup(PlayerPickupExperienceEvent event) {
+    // --- XP gain ---
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onXpChange(PlayerExpChangeEvent event) {
         Player p = event.getPlayer();
         if (mgr().restrictsXpPickup() && mgr().isRestricted(p)) {
-            event.setCancelled(true);
+            event.setAmount(0);
         }
     }
 

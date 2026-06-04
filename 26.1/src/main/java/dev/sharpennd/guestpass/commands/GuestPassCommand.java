@@ -2,7 +2,6 @@ package dev.sharpennd.guestpass.commands;
 
 import dev.sharpennd.guestpass.GuestPass;
 import dev.sharpennd.guestpass.managers.GuestManager;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.*;
@@ -29,12 +28,12 @@ public class GuestPassCommand implements CommandExecutor, TabCompleter {
         for (int i = 0; i + 1 < replacements.length; i += 2) {
             raw = raw.replace(replacements[i], replacements[i + 1]);
         }
-        sender.sendMessage(LegacyComponentSerializer.legacyAmpersand().deserialize(raw));
+        sender.sendMessage(org.bukkit.ChatColor.translateAlternateColorCodes('&', raw));
     }
 
     private void send(CommandSender sender, String raw) {
         if (raw == null || raw.isBlank()) return;
-        sender.sendMessage(LegacyComponentSerializer.legacyAmpersand().deserialize(raw));
+        sender.sendMessage(org.bukkit.ChatColor.translateAlternateColorCodes('&', raw));
     }
 
     @Override

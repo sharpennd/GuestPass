@@ -1,0 +1,21 @@
+name: GuestPass
+version: '${project.version}'
+main: dev.sharpennd.guestpass.GuestPass
+api-version: '1.21'
+description: Restricts players in guest pass mode from interacting with the world.
+authors: [sharpennd]
+
+commands:
+  guestpass:
+    description: Manage GuestPass for players.
+    usage: /guestpass <add|remove|list|reload|status>
+    permission: guestpass.admin
+    aliases: [gm]
+
+permissions:
+  guestpass.admin:
+    description: Allows full management of GuestPass.
+    default: op
+  guestpass.bypass:
+    description: Bypasses GuestPass restrictions even if assigned.
+    default: false

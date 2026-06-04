@@ -1,0 +1,44 @@
+# GuestPass Configuration
+
+# Globally enable or disable the GuestPass system entirely.
+# When false, no restrictions apply regardless of other settings.
+enabled: true
+
+# --- Time-based activation ---
+# If set, GuestPass only applies between these times.
+# Leave both blank (or comment them out) to have no time restriction.
+# Format: "yyyy-MM-dd HH:mm" (24-hour, server local time)
+#   e.g., activate-at: "2025-01-01 18:00"
+#         deactivate-at: "2025-01-02 06:00"
+# You may set only one (e.g. only activate-at to enable from that point forward).
+activate-at: ""
+deactivate-at: ""
+
+# --- Restriction toggles ---
+# Set any of these to false to allow that action for guests.
+restrictions:
+  block-break: true
+  block-place: true
+  block-interact: true
+  entity-interact: true
+  attack: true
+  take-damage: true
+  item-pickup: true
+  xp-pickup: true
+  entity-mount: true
+  mob-targeting: true
+
+# --- Messages ---
+# Supports & colour codes. Leave blank to send no message.
+messages:
+  restricted: "&cYou cannot do that as a guest."
+  added: "&aPlayer {player} has been added to GuestPass."
+  removed: "&aPlayer {player} has been removed from GuestPass."
+  already-guest: "&e{player} is already in GuestPass."
+  not-guest: "&e{player} is not in GuestPass."
+  reloaded: "&aGuestPass config reloaded."
+  status-header: "&6--- GuestPass Status ---"
+  status-enabled: "&7System enabled: &a{value}"
+  status-time-window: "&7Active window: &e{value}"
+  status-currently-active: "&7Currently enforcing: &a{value}"
+  status-guest-count: "&7Guests online: &e{value}"
